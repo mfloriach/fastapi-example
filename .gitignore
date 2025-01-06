@@ -1,0 +1,8 @@
+build/*
+.env
+*__pycache__*
+env
+dependencies
+.venv
+Makefile
+.pytest_cache
