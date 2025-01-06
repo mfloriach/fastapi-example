@@ -17,6 +17,10 @@ app = FastAPI(
 
 @app.middleware("http")
 async def validate_access_token(request: Request, call_next):
+    if request.url.path in ["/api/v1/auth/signin", "/api/v1/auth/signup"]:
+        response = await call_next(request)
+        return response
+    
     try:
         access_token = request.headers.get("Authorization")
         await verify_token(access_token)
